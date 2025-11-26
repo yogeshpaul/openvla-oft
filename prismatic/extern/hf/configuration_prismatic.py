@@ -21,6 +21,12 @@ VISION_BACKBONE_TO_RESOLUTION: Dict[str, List[int]] = {
     "dinoclip-vit-l-336px": [336, 336],
     "dinosiglip-vit-so-224px": [224, 224],
     "dinosiglip-vit-so-384px": [384, 384],
+
+    "siglip2-vit-so400m": [224],
+    "dinov3-vit-l": [224],
+    "siglip2-vit-so400m-384px": [384],
+    "dino3siglip2-vit-so-224px": [224, 224],
+    "dino3siglip2-vit-so-384px": [384, 384],
 }
 VISION_BACKBONE_TO_TIMM_ID: Dict[str, List[str]] = {
     "clip-vit-l": ["vit_large_patch14_clip_224.openai"],
@@ -35,13 +41,27 @@ VISION_BACKBONE_TO_TIMM_ID: Dict[str, List[str]] = {
     "dinoclip-vit-l-336px": ["vit_large_patch14_reg4_dinov2.lvd142m", "vit_large_patch14_clip_336.openai"],
     "dinosiglip-vit-so-224px": ["vit_large_patch14_reg4_dinov2.lvd142m", "vit_so400m_patch14_siglip_224"],
     "dinosiglip-vit-so-384px": ["vit_large_patch14_reg4_dinov2.lvd142m", "vit_so400m_patch14_siglip_384"],
+
+    # entries for Siglip2+DinoV3
+    "siglip2-vit-so400m": ["ViT-SO400M-14-SigLIP2"],
+    "siglip2-vit-so400m-384px": ["ViT-SO400M-16-SigLIP2-384"],
+    "dinov3-vit-l": ["vit_large_patch16_dinov3.lvd1689m"],
+    "dino3siglip2-vit-so-224px": ["vit_large_patch16_dinov3.lvd1689m", "ViT-SO400M-14-SigLIP2"],
+    "dino3siglip2-vit-so-384px": ["vit_large_patch16_dinov3.lvd1689m", "ViT-SO400M-16-SigLIP2-384"],
+
 }
 TIMM_OVERRIDE_ACT_LAYER: Dict[str, List[Optional[str]]] = {
     "clip-vit-l": ["quick_gelu"], "clip-vit-l-336px": ["quick_gelu"],
     "dinov2-vit-l": [None], "in1k-vit-l": [None],
     "siglip-vit-so400m": [None], "siglip-vit-so400m-384px": [None],
     "dinoclip-vit-l-336px": [None, "quick_gelu"],
-    "dinosiglip-vit-so-224px": [None, None], "dinosiglip-vit-so-384px": [None, None]
+    "dinosiglip-vit-so-224px": [None, None], "dinosiglip-vit-so-384px": [None, None],
+
+    "dinov3-vit-l": [None],
+    "siglip2-vit-so400m": [None],
+    "siglip2-vit-so400m-384px": [None],
+    "dino3siglip2-vit-so-224px": [None, None],
+    "dino3siglip2-vit-so-384px": [None, None]
 }
 
 LLM_BACKBONE_TO_HF_PATH = {
@@ -75,7 +95,7 @@ class PrismaticConfig(PretrainedConfig):
 
     def __init__(
         self,
-        vision_backbone_id: str = "siglip-vit-so400m",
+        vision_backbone_id: str = "siglip2-vit-so400m",
         llm_backbone_id: str = "vicuna-v15-7b",
         arch_specifier: str = "no-align+gelu-mlp",
         use_fused_vision_backbone: Optional[bool] = None,
@@ -103,7 +123,7 @@ class PrismaticConfig(PretrainedConfig):
         self.use_fused_vision_backbone = (
             use_fused_vision_backbone
             if use_fused_vision_backbone is not None
-            else any(self.vision_backbone_id.startswith(v) for v in ["dinoclip", "dinosiglip"])
+            else any(self.vision_backbone_id.startswith(v) for v in ["dinoclip", "dinosiglip", "dino3siglip2"])
         )
 
         self.timm_model_ids = VISION_BACKBONE_TO_TIMM_ID[self.vision_backbone_id]

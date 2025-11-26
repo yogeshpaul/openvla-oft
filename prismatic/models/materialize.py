@@ -15,9 +15,11 @@ from prismatic.models.backbones.vision import (
     DinoCLIPViTBackbone,
     DinoSigLIPViTBackbone,
     DinoV2ViTBackbone,
+    DinoV3ViTBackbone,
     ImageTransform,
     IN1KViTBackbone,
     SigLIPViTBackbone,
+    SigLIP2ViTBackbone,
     VisionBackbone,
 )
 from prismatic.models.vlms import PrismaticVLM
@@ -31,6 +33,7 @@ VISION_BACKBONES = {
     "clip-vit-l": {"cls": CLIPViTBackbone, "kwargs": {"default_image_size": 224}},
     "siglip-vit-so400m": {"cls": SigLIPViTBackbone, "kwargs": {"default_image_size": 224}},
     "dinov2-vit-l": {"cls": DinoV2ViTBackbone, "kwargs": {"default_image_size": 224}},
+    "dinov3-vit-l": {"cls": DinoV3ViTBackbone, "kwargs": {"default_image_size": 224}},
     "in1k-vit-l": {"cls": IN1KViTBackbone, "kwargs": {"default_image_size": 224}},
     "dinosiglip-vit-so-224px": {"cls": DinoSigLIPViTBackbone, "kwargs": {"default_image_size": 224}},
 
@@ -43,6 +46,13 @@ VISION_BACKBONES = {
     "siglip-vit-b16-256px": {"cls": SigLIPViTBackbone, "kwargs": {"default_image_size": 256}},
     "siglip-vit-b16-384px": {"cls": SigLIPViTBackbone, "kwargs": {"default_image_size": 384}},
     "siglip-vit-so400m-384px": {"cls": SigLIPViTBackbone, "kwargs": {"default_image_size": 384}},
+
+    # === Assorted SigLIP2 Backbones ===
+    "siglip2-vit-b16-224px": {"cls": SigLIP2ViTBackbone, "kwargs": {"default_image_size": 224}},
+    "siglip2-vit-b16-256px": {"cls": SigLIP2ViTBackbone, "kwargs": {"default_image_size": 256}},
+    "siglip2-vit-b16-384px": {"cls": SigLIP2ViTBackbone, "kwargs": {"default_image_size": 384}},
+    "siglip2-vit-b16-512px": {"cls": SigLIP2ViTBackbone, "kwargs": {"default_image_size": 512}},
+    #"siglip2-vit-so400m-384px": {"cls": SigLIP2ViTBackbone, "kwargs": {"default_image_size": 384}},
 
     # === Fused Backbones ===
     "dinoclip-vit-l-336px": {"cls": DinoCLIPViTBackbone, "kwargs": {"default_image_size": 336}},

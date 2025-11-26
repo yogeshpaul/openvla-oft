@@ -27,6 +27,14 @@ DINOSigLIP_VISION_BACKBONES = {
         "dino": "vit_large_patch14_reg4_dinov2.lvd142m",
         "siglip": "vit_so400m_patch14_siglip_384",
     },
+    "dino3siglip2-vit-so-224px": {
+        "dino": "vit_large_patch16_dinov3.lvd1689m",
+        "siglip": "ViT-SO400M-14-SigLIP2",
+    },
+    "dino3siglip2-vit-so-384px": {
+        "dino": "vit_large_patch16_dinov3.lvd1689m",
+        "siglip": "ViT-SO400M-16-SigLIP2-384",
+    },
 }
 
 
