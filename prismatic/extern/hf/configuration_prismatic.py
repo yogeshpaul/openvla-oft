@@ -68,6 +68,10 @@ LLM_BACKBONE_TO_HF_PATH = {
     "llama2-7b-pure": "meta-llama/Llama-2-7b-hf", "llama2-13b-pure": "meta-llama/Llama-2-13b-hf",
     "llama2-7b-chat": "meta-llama/Llama-2-7b-chat-hf", "llama2-13b-chat": "meta-llama/Llama-2-13b-chat-hf",
 
+
+    "llama3.2-3b": "meta-llama/Llama-3.2-3B-Instruct",
+    "llama3.1-8b": "meta-llama/Llama-3.1-8B-Instruct",
+
     "vicuna-v15-7b": "lmsys/vicuna-7b-v1.5", "vicuna-v15-13b": "lmsys/vicuna-13b-v1.5",
 
     "mistral-v0.1-7b-pure": "mistralai/Mistral-7B-v0.1",
@@ -77,6 +81,7 @@ LLM_BACKBONE_TO_HF_PATH = {
 }
 LLM_BACKBONE_TO_HF_METACLASS = {
     "llama2-7b-pure": "llama", "llama2-13b-pure": "llama", "llama2-7b-chat": "llama", "llama2-13b-chat": "llama",
+    "llama3.2-3b": "llama", "llama3.1-8b": "llama",
     "vicuna-v15-7b": "llama", "vicuna-v15-13b": "llama",
 
     "mistral-v0.1-7b-pure": "mistral", "mistral-v0.1-7b-instruct": "mistral",
@@ -96,7 +101,7 @@ class PrismaticConfig(PretrainedConfig):
     def __init__(
         self,
         vision_backbone_id: str = "siglip2-vit-so400m",
-        llm_backbone_id: str = "vicuna-v15-7b",
+        llm_backbone_id: str = "llama3.1-8b",
         arch_specifier: str = "no-align+gelu-mlp",
         use_fused_vision_backbone: Optional[bool] = None,
         image_resize_strategy: str = "letterbox",
